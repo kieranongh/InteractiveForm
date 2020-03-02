@@ -1,14 +1,15 @@
-import FIELD_TYPES from '../components/FormFields/FieldTypes'
+import { FIELD_TYPES } from '../components/FormFields/FieldTypes'
 
 const USER_LOOKUP_URL = ""
 
 export default [
   {
-    questions: [
+    groups: [
       {
-        group: 1,
+        id: 1,
         fields: [
           {
+            id: "store_type",
             label: "Store type",
             type: FIELD_TYPES.SELECT,
             required: false,
@@ -16,13 +17,14 @@ export default [
             writable: true,
             value: "",
             options: [
-              "Mall",
-              "Metro",
-              "Arcade",
-              "Centre"
+              { value: "Mall", label: "Mall"},
+              { value: "Metro", label: "Metro"},
+              { value: "Arcade", label: "Arcade"},
+              { value: "Centre", label: "Centre"}
             ]
           },
           {
+            id: "store_type_details",
             label: "Provide details",
             type: FIELD_TYPES.TEXT_AREA,
             required: true,
@@ -33,9 +35,10 @@ export default [
         ]
       },
       {
-        group: 2,
+        id: 2,
         fields: [
           {
+            id: "user",
             label: "User Lookup",
             type: FIELD_TYPES.ASYNC_SELECT,
             required: false,
@@ -45,6 +48,7 @@ export default [
             url: USER_LOOKUP_URL
           },
           {
+            id: "user_first_name",
             label: "First Name",
             type: FIELD_TYPES.TEXT,
             required: false,
@@ -55,6 +59,7 @@ export default [
             url: USER_LOOKUP_URL
           },
           {
+            id: "user_last_name",
             label: "Last Name",
             type: FIELD_TYPES.TEXT,
             required: false,
@@ -69,9 +74,9 @@ export default [
     ]
   },
   {
-    questions: [
+    groups: [
       {
-        group: 1,
+        id: 1,
         fields: [
           {
             label: "What is the user's role"

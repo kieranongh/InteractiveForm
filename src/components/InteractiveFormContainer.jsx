@@ -49,29 +49,31 @@ const InteractiveFormContainer = () => {
             </Grid>
           )}
           <Grid item xs={12}>
-            <Router>
-              {addUserForm.map((fields, index) => {
-                console.log(`fields, index => `, fields, index)
-                const next = index + 1 === addUserForm.length ? null : `/page${index + 2}`
-                const prev = index === 0 ? null : `/page${index}`
-                
-                return (
-                  <Route
-                    path={`/page${index + 1}`}
-                    render={(routeProps) => (
-                      <FormPage
-                        next={next}
-                        prev={prev}
-                        fields={fields.questions}
-                        {...routeProps}
-                      />
-                    )}
-                    key={index}
-                  />
-                )
-              })}
-              <Redirect exact from="/" to="/page1" />
-            </Router>
+            <form>
+              <Router>
+                {addUserFormPages.map((pages, index) => {
+                  console.log(`pages, index => `, pages, index)
+                  const next = index + 1 === addUserFormPages.length ? null : `/page${index + 2}`
+                  const prev = index === 0 ? null : `/page${index}`
+                  
+                  return (
+                    <Route
+                      path={`/page${index + 1}`}
+                      render={(routeProps) => (
+                        <FormPage
+                          next={next}
+                          prev={prev}
+                          groups={pages.groups}
+                          {...routeProps}
+                        />
+                      )}
+                      key={index}
+                    />
+                  )
+                })}
+                <Redirect exact from="/" to="/page1" />
+              </Router>
+            </form>
           </Grid>
         </Grid>
       </Container>
